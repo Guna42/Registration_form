@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 👨‍💻Modern Registration Form</title>
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --input-bg: #1a1a1a;
+            --accent-color: #4CAF50;
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background-color: var(--primary-bg);
+            transition: background 0.5s ease;
+        }
+
+        /* Left Section - Image */
+        .image-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .image-section img {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            transform: scale(1);
+            filter: brightness(1);
+        }
+
+        .image-section img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        .image-section img:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Right Section - Form */
+        .form-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .form-container {
+            background: var(--primary-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-title {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .image-section {
+                padding: 1rem;
+            }
+
+            .image-section img {
+                max-width: 100%;
+            }
+
+            .form-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Section - Image -->
+    <div class="image-section">
+        <img src="image6.jpg" alt="Registration Image">
+    </div>
+
+    <!-- Right Section - Form -->
+    <div class="form-section">
+        <div class="form-container">
+            <h1 class="form-title">Create Account</h1>
+            <form id="registrationForm">
+                <div class="input-group">
+                    <input type="text" class="form-input" id="name" placeholder="Full Name">
+                    <div class="error-message" id="nameError"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="number" class="form-input" id="age" placeholder="Age">
+                    <div class="error-message" id="ageError"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" class="form-input" id="email" placeholder="Email Address">
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" class="form-input" id="pin" placeholder="PIN Code" maxlength="6">
+                    <div class="error-message" id="pinError"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" class="form-input" id="password" placeholder="Password">
+                    <span class="password-toggle" onclick="togglePassword()">👁️</span>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="changeBackground()">💡</button>
+
+    <script>
+        let colorIndex = 0;
+        const colors = ['#0a0a0a', '#ffffff'];
+
+        function changeBackground() {
+            colorIndex = (colorIndex + 1) % colors.length;
+            document.body.style.backgroundColor = colors[colorIndex];
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.querySelector('.password-toggle');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.textContent = '👁️';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            validateForm();
+        });
+
+        function validateForm() {
+            let isValid = true;
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            // Name Validation
+            const name = document.getElementById('name').value.trim();
+            if (!/^[A-Za-z\s]+$/.test(name)) {
+                showError('nameError', 'Only alphabets and spaces allowed');
+                isValid = false;
+            }
+
+            // Age Validation
+            const age = parseInt(document.getElementById('age').value);
+            if (isNaN(age) || age < 18 || age > 60) {
+                showError('ageError', 'Age must be 18-60');
+                isValid = false;
+            }
+
+            // Email Validation
+            const email = document.getElementById('email').value.trim();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('emailError', 'Invalid email format');
+                isValid = false;
+            }
+
+            // PIN Validation
+            const pin = document.getElementById('pin').value.trim();
+            if (!/^\d{6}$/.test(pin)) {
+                showError('pinError', '6 digits required');
+                isValid = false;
+            }
+
+            // Password Validation
+            const password = document.getElementById('password').value;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                showError('passwordError', 
+                    'Password must contain:<br>• 8+ characters<br>• Upper & lowercase letters<br>• A number<br>• A special character');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Registration successful!');
+                this.reset();
+            }
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.innerHTML = message;
+            errorElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
